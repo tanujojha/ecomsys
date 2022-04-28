@@ -8,9 +8,19 @@ const ItemState = (props)=> {
 
   const [items, setItems] = useState([]);
 
-  const [citem, setCitem] = useState([]);
+  const [viewItem, setViewItem] = useState({
+    name: "",
+    description: "",
+    image: "",
+    price: "",
+    review: "",
+    rating: ""
+  });
 
-  const [cart, setCart] = useState([])
+  const [cart, setCart] = useState([]);
+
+  const [wishlist, setWishlist] = useState([])
+
 
   //get all items
 
@@ -28,7 +38,7 @@ const ItemState = (props)=> {
 
   //view item
 
-  const viewItem = async(id)=>{
+  const getViewItem = async(id)=>{
     const response = await fetch(`${host}/api/items/viewitem/${id}`,{
       method: "GET",
       header:{
@@ -36,7 +46,7 @@ const ItemState = (props)=> {
       }
     });
     const data = await response.json();
-    setCitem(data)
+    setViewItem(data)
 
   }
 
@@ -70,9 +80,67 @@ const ItemState = (props)=> {
     setCart(data)
   }
 
+  // show cart Items
+
+  const getCart = async()=>{
+    const response = await fetch(`${host}/api/items/cartitems`, {
+      method: "GET",
+      header: {
+        "Content-Type": "application/json",
+        "auth-token": localStorage.getItem("token")
+      }
+    });
+    const data = await response.json()
+    setCart(data)
+  }
+
+  // show wishlist Items
+
+  const getWishlist = async()=>{
+    const response = await fetch(`${host}/api/items/wishlistitems`, {
+      method: "GET",
+      header: {
+        "Content-Type": "application/json",
+        "auth-token": localStorage.getItem("token")
+      }
+    });
+    const data = await response.json()
+    setWishlist(data)
+  }
+
+  // add to wishlist
+
+  const addToWishlist = async (id)=>{
+    const response = await fetch(`${host}/api/items/addtowishlist/${id}`, {
+      method: "PUT",
+      header: {
+        "Content-Type": "application/json",
+        "auth-token": localStorage.getItem("token")
+      }
+    });
+    const data = await response.json()
+    setWishlist(data)
+  }
+
+
+  // delete item from wishlist
+
+  const deleteFromWishlist = async (id)=>{
+    const response = await fetch(`${host}/api/items/deletefromwishlist/${id}`, {
+      method: "DELETE",
+      header: {
+        "Content-Type": "application/json",
+        "auth-token": localStorage.getItem("token")
+      }
+    });
+    const data = await response.json()
+    setWishlist(data)
+  }
+
+
 
   return (
-  <ItemContext.Provider value = {{items, getItems, citem}}>
+  <ItemContext.Provider value = {{items, getItems, viewItem, getViewItem, cart, getCart, addToCart, deleteFromCart, getWishlist, deleteFromWishlist, addToWishlist}}>
     {props.children}
   </ItemContext.Provider>
 )

@@ -37,7 +37,7 @@ router.post("/register", async (req, res) => {
     const authtoken = jwt.sign(data, JWT_SECRET);
     success = true;
 
-    res.status(200).json({user, authtoken, success});
+    res.status(200).json({authtoken, success});
   } catch (err) {
     res.status(500).json(err)
   }
@@ -62,7 +62,7 @@ router.post("/login", async (req, res) => {
     const authtoken = jwt.sign(data, JWT_SECRET);
     success = true;
 
-    res.status(200).json({user, authtoken, success})
+    res.status(200).json({authtoken, success})
   } catch (err) {
     res.status(500).json(err)
   }
@@ -78,7 +78,8 @@ router.post('/getuser', fetchuser,  async (req, res) => {
     const user = await User.findById(userId).select("-password")      //select is a mongoose method used to selcet document fields that are to be returned in the query result, we use minus(-) to not select password field
     res.send(user)
   } catch (error) {
-    res.status(500).json(err);
+    console.error(error.message);
+    res.status(500).send("Internal Server Error");
   }
 });
 

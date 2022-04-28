@@ -10,6 +10,17 @@ const itemSchema = new mongoose.Schema({
         required: true
     },
     image:{
+      type: String,
+      required: true
+    },
+    price: {
+      type: String,
+      required: true
+    },
+    review: {
+      type: String
+    },
+    rating: {
       type: String
     }
   });

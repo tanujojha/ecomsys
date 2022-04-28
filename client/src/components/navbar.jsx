@@ -10,6 +10,8 @@ const Navbar = () => {
     navigate("/")
   }
 
+
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
   <div className="container-fluid">
@@ -24,7 +26,10 @@ const Navbar = () => {
           <Link className={`nav-link ${location.pathname==="/"? "active": ""}`} aria-current="page" to="/">Home</Link>
         </li>
         <li className="nav-item">
-          <Link className={`nav-link ${location.pathname==="/cart" && "active"}`} to="/cart">cart</Link>
+          <Link  className={`nav-link ${location.pathname==="/cart" && "active"}`} to="/cart">cart</Link>
+        </li>
+        <li className="nav-item">
+          <Link  className={`nav-link ${location.pathname==="/wishlist" && "active"}`} to="/wishlist">wishlist</Link>
         </li>
 
       </ul>

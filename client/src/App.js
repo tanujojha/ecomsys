@@ -1,16 +1,19 @@
 import './App.css';
 import Navbar from "./components/navbar";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import Home from "./components/home";
 import Login from "./components/login";
 import Signup from "./components/signup";
 import Cart from "./components/cart";
 import ItemState from './context/item/ItemState';
+import Wishlist from "./components/wishlist"
 
 function App() {
+
+
   return (
     <>
-    <ItemState> 
+    <ItemState>
       <Router>
 
         <Navbar/>
@@ -20,6 +23,8 @@ function App() {
           <Route path="/login" element={<Login/>} />
           <Route path="/signup" element={<Signup/>} />
           <Route path="/cart" element={<Cart/>} />
+          <Route path="/wishlist" element={<Wishlist/>} />
+
         </Routes>
 
       </Router>

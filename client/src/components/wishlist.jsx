@@ -1,23 +1,22 @@
 import React, {useContext, useEffect} from 'react';
-
 import ItemContext from '../context/item/ItemContext';
-import Cartitem from "./cartitem";
+import Wishlistitem from "./wishlistitem";
 
 
-const Cart = (props)=>{
+const Wishlist = (props)=>{
 
   const context = useContext(ItemContext);
-  const {cart, getCart} = context;
+  const {wishlist, getWishlist} = context;
 
   useEffect(()=>{
-    getCart();
+    getWishlist();
   })
 
   if (localStorage.getItem("token")){
     return (
       <>
-      {cart.map((item)=>{
-        return <Cartitem key={item._id} id = {item._id} item = {item} />
+      {wishlist.map((item)=>{
+        return <Wishlistitem key={item._id} id = {item._id} item = {item} />
       })}
       </>
     )
@@ -31,4 +30,4 @@ const Cart = (props)=>{
 }
 
 
-export default Cart;
+export default Wishlist;
