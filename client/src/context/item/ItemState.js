@@ -140,7 +140,7 @@ const ItemState = (props)=> {
 
 
   return (
-  <ItemContext.Provider value = {{items, getItems, viewItem, getViewItem, cart, getCart, addToCart, deleteFromCart, getWishlist, deleteFromWishlist, addToWishlist}}>
+  <ItemContext.Provider value = {{items, getItems, viewItem, getViewItem, cart, getCart, addToCart, deleteFromCart, wishlist, getWishlist, deleteFromWishlist, addToWishlist}}>
     {props.children}
   </ItemContext.Provider>
 )
