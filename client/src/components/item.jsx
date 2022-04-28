@@ -6,13 +6,11 @@ import ItemContext from '../context/item/ItemContext';
 const Item = (props)=> {
 
   const context = useContext(ItemContext);
-
-  const {viewItem} = context;
+  const {getViewItem} = context;
 
   const handelView = ()=>{
-    viewItem(props.item.id);
+    getViewItem(props.item._id)
   }
-
 
   return (
 
@@ -21,7 +19,7 @@ const Item = (props)=> {
         <div className="card-body">
           <h5 className="card-title">{props.item.name}</h5>
           <p className="card-text">{props.item.description}</p>
-          <Link to={`/items/viewitem/${props.id}`} onClick = {handelView} className="btn btn-primary">view product</Link>
+          <Link to="/viewitem" onClick = {handelView} className="btn btn-primary">view product</Link>
         </div>
         <Link to="#"><button className="btn btn-sm btn-success">add to cart</button></Link>
         <Link to="#"><button className="btn btn-sm btn-success my-2">add to wishlist</button></Link>

@@ -8,14 +8,7 @@ const ItemState = (props)=> {
 
   const [items, setItems] = useState([]);
 
-  const [viewItem, setViewItem] = useState({
-    name: "",
-    description: "",
-    image: "",
-    price: "",
-    review: "",
-    rating: ""
-  });
+  const [viewItem, setViewItem] = useState({ });
 
   const [cart, setCart] = useState([]);
 
@@ -47,7 +40,7 @@ const ItemState = (props)=> {
     });
     const data = await response.json();
     setViewItem(data)
-
+    console.log(viewItem)
   }
 
 
